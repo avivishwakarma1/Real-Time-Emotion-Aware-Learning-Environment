@@ -1,0 +1,198 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); /* Deeper, richer background */
+  color: #e0e7ff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+}
+
+/* --- Header Styling --- */
+header {
+  background: rgba(255, 255, 255, 0.05); /* Light 'glass' effect */
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #06b6d4; /* Accent line */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin: 0;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+/* --- Main Container & Layout --- */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* --- Control Section Styling --- */
+.controls {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08); /* Subtle background for controls */
+  border-radius: 15px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.controls input, .controls select, .controls button {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.controls input, .controls select {
+    background: rgba(0, 0, 0, 0.3);
+    color: #e0e7ff;
+    border: 1px solid #06b6d450;
+    width: 100%; /* Default to full width for better mobile stacking */
+    max-width: 250px;
+}
+.controls input::placeholder {
+    color: #a0aec0;
+}
+
+.controls button {
+  cursor: pointer;
+  background: #06b6d4; /* Primary action color */
+  color: #0f2027; /* Dark text for contrast */
+  font-weight: bold;
+  flex-grow: 1; /* Allow buttons to grow */
+  max-width: 150px;
+}
+.controls button:hover:not([disabled]) {
+  background: #38bdf8; /* Lighter shade on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.6);
+}
+.controls button:disabled {
+    background: #4a5568;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* --- Camera Section Styling --- */
+.camera {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.camera video {
+  width: 100%;
+  max-width: 640px; /* Slightly wider for better view */
+  aspect-ratio: 4/3; /* Set aspect ratio for consistent sizing */
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 0 5px #06b6d4; /* Teal border accent */
+  object-fit: cover;
+  background-color: #000;
+}
+
+/* --- Status/Analysis Styling (Glassmorphism) --- */
+.status {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: left;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.status h2 {
+    color: #06b6d4;
+    border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.status p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin: 8px 0;
+    font-weight: 300;
+}
+
+.status p span {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* --- Links and Footer --- */
+a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+a:hover {
+  color: #06b6d4;
+  text-decoration: underline;
+}
+
+footer {
+  background: rgba(0,0,0,0.4);
+  padding: 15px;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* --- Responsiveness: Mobile Adjustments --- */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+  
+  .container {
+    padding: 20px 10px;
+    width: 100%;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    width: 90%;
+  }
+
+  .controls input, .controls select, .controls button {
+    max-width: 100%;
+  }
+
+  .camera video { 
+      border-radius: 12px;
+  }
+  
+  .status {
+      width: 90%;
+      padding: 20px;
+  }
+}

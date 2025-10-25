@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emotion Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Engagement Dashboard</h1>
+    <div class="charts">
+      <div class="chart-card">
+        <h3>Emotion distribution (recent)</h3>
+        <canvas id="emotionChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Avg engagement by user</h3>
+        <canvas id="engagementChart"></canvas>
+      </div>
+    </div>
+    <div style="margin-top:20px">
+      <a href="/download_logs">Download raw logs (CSV)</a>
+    </div>
+  </main>
+
+  <script>
+    async function fetchData() {
+      const r = await fetch("/data");
+      return await r.json();
+    }
+
+    function drawEmotionChart(ctx, labels, values) {
+      return new Chart(ctx, {
+        type: "pie",
+        data: { labels, datasets: [{ data: values }] },
+        options: { responsive: true }
+      });
+    }
+
+    function drawEngagementChart(ctx, labels, values) {
+      return new Chart(ctx, {
+        type: "bar",
+        data: { labels, datasets: [{ label: "Avg engagement", data: values }] },
+        options: { responsive: true, scales: { y: { beginAtZero: true, max: 1 } } }
+      });
+    }
+
+    async function init() {
+      const d = await fetchData();
+      const emotionCtx = document.getElementById("emotionChart").getContext("2d");
+      const engagementCtx = document.getElementById("engagementChart").getContext("2d");
+      const emotionLabels = Object.keys(d.emotion_counts || {});
+      const emotionValues = Object.values(d.emotion_counts || {});
+      drawEmotionChart(emotionCtx, emotionLabels, emotionValues);
+      const byUser = (d.avg_engagement_by_user || []).sort((a,b)=>b.engagement-a.engagement).slice(0,12);
+      const userLabels = byUser.map(x=>x.user_id);
+      const userValues = byUser.map(x=>parseFloat(x.engagement.toFixed(3)));
+      drawEngagementChart(engagementCtx, userLabels, userValues);
+      setTimeout(init, 5000);
+    }
+    init();
+  </script>
+</body>
+</html>

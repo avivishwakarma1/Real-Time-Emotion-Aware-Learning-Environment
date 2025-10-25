@@ -1,0 +1,7 @@
+flask
+flask-cors
+numpy
+pandas
+opencv-python-headless
+deepface
+tensorflow

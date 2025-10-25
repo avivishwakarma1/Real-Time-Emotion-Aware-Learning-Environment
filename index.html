@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emotion Aware Classroom</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🎓 Real-time Emotion Aware Classroom</h1>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <input id="userId" type="text" placeholder="Enter your ID">
+      <select id="role">
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+      <input id="interval" type="number" min="1" value="3" title="Analysis Interval in Seconds" placeholder="Interval (seconds)">
+      <button id="startBtn">▶ Start</button>
+      <button id="stopBtn" disabled>⏹ Stop</button>
+    </section>
+
+    <section class="camera">
+      <video id="video" autoplay playsinline></video>
+      <canvas id="canvas" hidden></canvas>
+    </section>
+
+    <section class="status">
+      <h2>📊 Live Analysis</h2>
+      <p>Emotion: <span id="lastEmotion">—</span></p>
+      <p>Confidence: <span id="lastConf">—</span></p>
+      <p>Engagement: <span id="lastEng">—</span></p>
+    </section>
+
+    <section>
+      <p>See aggregated results in <a href="/dashboard" target="_blank">📈 Dashboard</a></p>
+    </section>
+  </main>
+  
+  <footer>
+    <p>Made for smarter learning</p>
+  </footer>
+
+  <script src="/static/js/client.js"></script>
+</body>
+</html>
