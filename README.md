@@ -109,5 +109,5 @@ This project is licensed under the MIT License — see the `LICENSE` file for de
 
 ## 👨‍💻 Author
 
-**Abhitesh**  
+**Abhitesh, Ayushi, Himanshi**  
 B.Tech in Artificial Intelligence & Data Science
